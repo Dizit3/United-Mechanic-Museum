@@ -3,13 +3,21 @@
 public class PIDGyroSimulation : MonoBehaviour
 {
     public GameObject targetVertex;  // Указатель на трансформ угла, который должен оказаться вверху
-    public float kp1 = 10.0f;  // Пропорциональный коэффициент для первой оси
-    public float ki1 = 0.1f;   // Интегральный коэффициент для первой оси
-    public float kd1 = 5.0f;   // Дифференциальный коэффициент для первой оси
 
-    public float kp2 = 10.0f;  // Пропорциональный коэффициент для второй оси
-    public float ki2 = 0.1f;   // Интегральный коэффициент для второй оси
-    public float kd2 = 5.0f;   // Дифференциальный коэффициент для второй оси
+    // PID параметры для первой оси
+    public float kp1 = 10.0f;
+    public float ki1 = 0.1f;
+    public float kd1 = 5.0f;
+
+    // PID параметры для второй оси
+    public float kp2 = 10.0f;
+    public float ki2 = 0.1f;
+    public float kd2 = 5.0f;
+
+    // Флаги для дублирования значений PID
+    public bool duplicateKp = true;
+    public bool duplicateKi = true;
+    public bool duplicateKd = true;
 
     public float normalDamping = 0.1f;  // Нормальное демпфирование
     public float highDamping = 0.5f;  // Высокое демпфирование при быстром вращении
@@ -28,6 +36,11 @@ public class PIDGyroSimulation : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Дублирование значений PID
+        if (duplicateKp) kp2 = kp1;
+        if (duplicateKi) ki2 = ki1;
+        if (duplicateKd) kd2 = kd1;
+
         Vector3 targetDirection = (targetVertex.transform.position - transform.position).normalized;
         Vector3 currentUp = transform.up;
         float error1 = Vector3.Angle(currentUp, targetDirection);

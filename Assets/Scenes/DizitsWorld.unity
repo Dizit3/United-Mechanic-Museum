@@ -721,6 +721,9 @@ MonoBehaviour:
   kp2: 0.1
   ki2: 0
   kd2: 0.005
+  duplicateKp: 1
+  duplicateKi: 1
+  duplicateKd: 1
   normalDamping: 0.1
   highDamping: 0.5
   speedThreshold: 1

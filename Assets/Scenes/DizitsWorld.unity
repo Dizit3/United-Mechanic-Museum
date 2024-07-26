@@ -715,8 +715,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetVertex: {fileID: 1866213323}
-  stabilizationStrength: 10
-  correctionStrength: 20
+  kp1: 0.1
+  ki1: 0
+  kd1: 0.005
+  kp2: 0.1
+  ki2: 0
+  kd2: 0.005
   normalDamping: 0.1
   highDamping: 0.5
   speedThreshold: 1
